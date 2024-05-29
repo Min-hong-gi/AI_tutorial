@@ -1,5 +1,5 @@
-import { MSE } from "../util/util.core.js";
-import { Chapter } from "./chapter.class.js";
+import { MSE } from "../../util/util.core.js";
+import { Chapter } from "../chapter.class.js";
 
 // 선형 회귀
 export class LinearRegression extends Chapter {

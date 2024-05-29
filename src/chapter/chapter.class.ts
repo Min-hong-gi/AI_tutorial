@@ -34,8 +34,16 @@ export class Chapter {
 		this.loop.unsubscribe(this.fn);
 		this.loop.stop();
 	}
-	preprocessing() {}
-	printData() {}
-	model(epoch: number) {}
-	draw(epoch: number) {}
+	preprocessing() {
+		console.log("Not implements method: preprocessing")
+	}
+	printData() {
+		console.log("Not implements method: printData")
+	}
+	model(epoch: number) {
+		console.log("Not implements method: model")
+	}
+	draw(epoch: number) {
+		console.log("Not implements method: draw")
+	}
 }

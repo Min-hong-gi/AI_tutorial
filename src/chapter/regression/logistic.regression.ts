@@ -1,5 +1,5 @@
-import { binaryCrossEntropy, normalize, oneHot, sigmoid } from "../util/util.core.js";
-import { Chapter } from "./chapter.class.js";
+import { binaryCrossEntropy, normalize, tokenizer, sigmoid } from "../../util/util.core.js";
+import { Chapter } from "../chapter.class.js";
 
 export class LogisticRegression extends Chapter {
 	// 학습률
@@ -67,7 +67,7 @@ export class LogisticRegression extends Chapter {
 	}
 	scale: Array<number> = new Array(this.X[0].length).fill(1);
 	preprocessing() {
-		oneHot(this.Y).forEach((x, i) => {
+		tokenizer(this.Y).forEach((x, i) => {
 			this.data[i].y = x;
 		});
 		this.scale = normalize(this.data);

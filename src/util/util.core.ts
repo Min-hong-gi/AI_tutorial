@@ -36,7 +36,7 @@ export function sigmoid(x: number) {
 	return 1 / (1 + Math.exp(-x));
 }
 
-export function oneHot(data: Array<string>) {
+export function tokenizer(data: Array<string>) {
 	let map: { [k: string]: number } = {};
 	let result: Array<number> = [];
 	let last = 0;
