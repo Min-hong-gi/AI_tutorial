@@ -23,7 +23,7 @@ body {
 	max-height: 100%;
 	background-color: #fff;
 	display: grid;
-	grid-template-rows: 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1fr;
 }
 .container canvas {
 	width: 100%;

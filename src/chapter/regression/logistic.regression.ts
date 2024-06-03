@@ -95,11 +95,14 @@ export class LogisticRegression extends Chapter {
 			ctx.beginPath();
 		});
 		let hs: Array<number> = [];
+
 		// 데이터 포인트 그리기
 		this.canvasManager.draw((ctx, vw, vh) => {
+			const heighScale = vh / 2;
+
 			this.data.forEach(point => {
 				ctx.beginPath();
-				ctx.arc(300 + (point.x[0]) * 300, (vh - 100) - (point.y * 300), 5, 0, Math.PI * 2);
+				ctx.arc(300 + (point.x[0]) * 300, (vh - 10) - (point.y * heighScale), 5, 0, Math.PI * 2);
 				ctx.fillStyle = '#f00';
 				ctx.fill();
 				ctx.closePath();
@@ -108,7 +111,7 @@ export class LogisticRegression extends Chapter {
 				const h = sigmoid([z])[0];
 				hs.push(h);
 				ctx.beginPath();
-				ctx.arc(300 + (point.x[0]) * 300, (vh - 100) - (h * 300), 5, 0, Math.PI * 2);
+				ctx.arc(300 + (point.x[0]) * 300, (vh - 10) - (h * heighScale), 5, 0, Math.PI * 2);
 				ctx.fillStyle = '#00f';
 				ctx.fill();
 				ctx.closePath();

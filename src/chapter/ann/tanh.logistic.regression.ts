@@ -111,30 +111,32 @@ export class PerceptronLogisticRegression extends Chapter {
 			const y = data.y[0];
 
 			this.canvasManager.draw((ctx, vw, vh) => {
+				const heightScale = vh/2;
+
 				// 실제값
 				ctx.beginPath();
-				ctx.moveTo(300 + prev.x[0] * 300, (vh - 300) - prev.y[0] * 200);
-				ctx.lineTo(300 + x * 300, (vh - 300) - (y * 200));
+				ctx.moveTo(300 + prev.x[0] * 300, (vh - 10) - prev.y[0] * heightScale);
+				ctx.lineTo(300 + x * 300, (vh - 10) - (y * heightScale));
 				ctx.strokeStyle = '#f00';
 				ctx.stroke();
 				ctx.closePath();
 
 				ctx.beginPath();
-				ctx.arc(300 + x * 300, (vh - 300) - (y * 200), 5, 0, Math.PI * 2);
+				ctx.arc(300 + x * 300, (vh - 10) - (y * heightScale), 5, 0, Math.PI * 2);
 				ctx.fillStyle = '#f00';
 				ctx.fill();
 				ctx.closePath();
 
 				// 예상 값
 				ctx.beginPath();
-				ctx.moveTo(300 + prev.x[0] * 300, (vh - 300) - prevPredictedY * 200);
-				ctx.lineTo(300 + x * 300, (vh - 300) - (predicted[i][0] * 200));
+				ctx.moveTo(300 + prev.x[0] * 300, (vh - 10) - prevPredictedY * heightScale);
+				ctx.lineTo(300 + x * 300, (vh - 10) - (predicted[i][0] * heightScale));
 				ctx.strokeStyle = '#00f';
 				ctx.stroke();
 				ctx.closePath();
 
 				ctx.beginPath();
-				ctx.arc(300 + x * 300, (vh - 300) - (predicted[i][0] * 200), 5, 0, Math.PI * 2);
+				ctx.arc(300 + x * 300, (vh - 10) - (predicted[i][0] * heightScale), 5, 0, Math.PI * 2);
 				ctx.fillStyle = '#00f';
 				ctx.fill();
 				ctx.closePath();
