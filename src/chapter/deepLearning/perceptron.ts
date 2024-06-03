@@ -37,9 +37,9 @@ export function perceptron({ activationFunction, lossFunction, errorFunction, op
         // 가중치 및 편향 업데이트
         for (let j = 0; j < numClasses; j++) {
             for (let i = 0; i < numFeatures; i++) {
-                weights[j][i] -= optimizer(learningRate, gradients_w[j][i]);
+                weights[j][i] = optimizer(weights[j][i], learningRate, gradients_w[j][i]);
             }
-            bias[j] -= optimizer(learningRate, gradients_b[j]);
+            bias[j] = optimizer(bias[j], learningRate, gradients_b[j]);
         }
 
         return {

@@ -5,7 +5,7 @@ type PerceptronLayerInitType = {
 		y_hat: number[]
 	) => number,
 	errorFunction: (error: number) => number,
-	optimizer: (learningRate: number, gradient: number) => number,
+	optimizer: (param: number, learningRate: number, gradient: number) => number,
 	learningRate?: number
 }
 

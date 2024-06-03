@@ -1,6 +1,6 @@
-import { leakyReLU, reLU, sigmoid } from "../../util/active.core.js";
+import { leakyReLU, sigmoid } from "../../util/active.core.js";
 import { binaryCrossEntropy } from "../../util/loss.core.js";
-import { gradientDescent } from "../../util/optimizer.core.js";
+import { momentumGradientDescent } from "../../util/optimizer.core.js";
 import { normalize } from "../../util/util.core.js";
 import { feeForward, layerProcessing } from "../../util/util.js";
 import { Chapter } from "../chapter.class.js";
@@ -10,7 +10,7 @@ import { perceptron } from "../deepLearning/perceptron.js";
 // 선형 회귀
 export class PerceptronLogisticRegression extends Chapter {
 	// 학습률
-	private static learningRate = 0.1;
+	private static learningRate = 0.01;
 
 	private lerningdata = [
 		{ x: [5], y: [0] },
@@ -53,16 +53,12 @@ export class PerceptronLogisticRegression extends Chapter {
 		
 		const layer = perceptron({
 			// 활성화 함수
-			activationFunction: (sum)=>{
-				return sum.map(x=>{
-					return Math.tanh(x);
-				})
-			},
+			activationFunction: leakyReLU,
 			// 가중치 반영 함수
 			errorFunction: (error) => {
 				return error;
 			},
-			optimizer: gradientDescent,
+			optimizer: momentumGradientDescent(0.9),
 			// 학습률
 			learningRate: PerceptronLogisticRegression.learningRate,
 		});
@@ -76,7 +72,7 @@ export class PerceptronLogisticRegression extends Chapter {
 			errorFunction: (error) => {
 				return error;
 			},
-			optimizer: gradientDescent,
+			optimizer: momentumGradientDescent(0.9),
 			// 학습률
 			learningRate: PerceptronLogisticRegression.learningRate,
 		});
@@ -90,7 +86,7 @@ export class PerceptronLogisticRegression extends Chapter {
 				// 편향
 				bias: [this.b],
 			}),
-			layerProcessing(layer),
+			// layerProcessing(layer),
 			layerProcessing(outLayer),
 		);
 

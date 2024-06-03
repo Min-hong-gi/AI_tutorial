@@ -14,6 +14,9 @@ export function binaryCrossEntropy(y: Array<number>, y_hat: Array<number>) {
 	for (let i = 0; i < N; i++) {
 		loss += y[i] * Math.log(y_hat[i]) + (1 - y[i]) * Math.log(1 - y_hat[i]);
 	}
+	if(loss === 0) {
+		return 0
+	}
 	return -loss / N;
 }
 // 다중 클래스 분류

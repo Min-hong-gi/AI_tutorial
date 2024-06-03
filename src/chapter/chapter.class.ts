@@ -16,9 +16,9 @@ export class Chapter {
 
 	private fn: (time: number, epoch: number) => void;
 
-	constructor(protected delay: number) {
+	constructor(protected delay: number, selector = 'canvas') {
 		// 시각화 캔버스 설정
-		this._canvasManager = new CanvasManager('canvas');
+		this._canvasManager = new CanvasManager(selector);
 		// 메인 루프 설정
 		this._loop = new LoopManager();
 		this.loop.time = delay;
