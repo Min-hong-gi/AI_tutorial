@@ -50,21 +50,14 @@ export class PerceptronLogisticRegression extends Chapter {
 
 	model(epoch: number) {
 		// 학습 계층
-
-		const initLayer = perceptron({
-			// 활성화 함수
-			activationFunction: reLU,
-			// 가중치 반영 함수
-			errorFunction: (error) => {
-				return error;
-			},
-			optimizer: gradientDescent,
-			// 학습률
-			learningRate: PerceptronLogisticRegression.learningRate,
-		});
+		
 		const layer = perceptron({
 			// 활성화 함수
-			activationFunction: leakyReLU,
+			activationFunction: (sum)=>{
+				return sum.map(x=>{
+					return Math.tanh(x);
+				})
+			},
 			// 가중치 반영 함수
 			errorFunction: (error) => {
 				return error;
@@ -89,7 +82,7 @@ export class PerceptronLogisticRegression extends Chapter {
 		});
 
 		const result = feeForward(
-			initLayer.bind(null, {
+			layer.bind(null, {
 				// 학습 데이터
 				originData: this.lerningdata,
 				// 가중치
