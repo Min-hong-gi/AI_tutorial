@@ -89,7 +89,7 @@ export class PerceptronLogisticRegression extends Chapter {
 		});
 
 		const result = feeForward(
-			outLayer.bind(null, {
+			initLayer.bind(null, {
 				// 학습 데이터
 				originData: this.lerningdata,
 				// 가중치
@@ -97,8 +97,8 @@ export class PerceptronLogisticRegression extends Chapter {
 				// 편향
 				bias: [this.b],
 			}),
-			// layerProcessing(layer),
-			// layerProcessing(outLayer),
+			layerProcessing(layer),
+			layerProcessing(outLayer),
 		);
 
 		this.w = result.weights[0][0];
