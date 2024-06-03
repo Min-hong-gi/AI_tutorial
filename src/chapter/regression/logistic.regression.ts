@@ -1,4 +1,6 @@
-import { binaryCrossEntropy, normalize, tokenizer, sigmoid } from "../../util/util.core.js";
+import { sigmoid } from "../../util/active.core.js";
+import { binaryCrossEntropy } from "../../util/loss.core.js";
+import { normalize, tokenizer } from "../../util/util.core.js";
 import { Chapter } from "../chapter.class.js";
 
 export class LogisticRegression extends Chapter {
@@ -46,7 +48,7 @@ export class LogisticRegression extends Chapter {
 			// 가중치와 편향을 통한 보정
 			let z = this.weights.reduce((sum, weight, j) => sum + (weight * X[i][j] + this.b), 0);
 			// sigmoid를 통한 0~1 정규화
-			let h = sigmoid(z);
+			let h = sigmoid([z])[0];
 			
 			//기울기 반영
 			for (let j = 0; j < n; j++) {
@@ -63,7 +65,7 @@ export class LogisticRegression extends Chapter {
 	predict(x: Array<number>): number {
 		x = x.map((d, i) => d / this.scale[i]);
 		let z = this.weights.reduce((sum, weight, j) => sum +( weight * x[j] + this.b), 0);
-		return sigmoid(z);
+		return sigmoid([z])[0];
 	}
 	scale: Array<number> = new Array(this.X[0].length).fill(1);
 	preprocessing() {
@@ -103,7 +105,7 @@ export class LogisticRegression extends Chapter {
 				ctx.closePath();
 
 				let z = this.weights.reduce((sum, weight, j) => sum + (weight * point.x[j] + this.b), 0);
-				const h = sigmoid(z);
+				const h = sigmoid([z])[0];
 				hs.push(h);
 				ctx.beginPath();
 				ctx.arc(300 + (point.x[0]) * 300, (vh - 100) - (h * 300), 5, 0, Math.PI * 2);

@@ -1,4 +1,3 @@
-import { MSE } from "../../util/util.core.js";
 import { Chapter } from "../chapter.class.js";
 
 // 선형 회귀
@@ -19,14 +18,9 @@ export class LinearRegression extends Chapter {
 		{ x: 9, y: 18 },
 	];
 	// 가중치 선언
-	private b = Math.random();
-	private w = Math.random();
+	private b = Math.random() * 0.1;
+	private w = Math.random() * 0.1;
 
-
-	//손실
-	get loss() {
-		return MSE(this.b, this.w, this.data);
-	}
 	printData(): void {
 		
 	}
@@ -91,7 +85,7 @@ export class LinearRegression extends Chapter {
 
 			// 현재 진행 상황
 			this.canvasManager.draw((ctx, vw, vh) => {
-				const msg = `Epoch: ${epoch} Loss: ${this.loss.toFixed(5)}`;
+				const msg = `Epoch: ${epoch}}`;
 				ctx.beginPath();
 				ctx.textBaseline = 'middle';
 				ctx.fillStyle = '#000'

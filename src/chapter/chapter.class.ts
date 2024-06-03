@@ -3,20 +3,24 @@ import { LoopManager } from "../manager/loop.manager.js";
 
 export class Chapter {
 	// 시각화할 캔버스
-	canvasManager: CanvasManager
+	private _canvasManager: CanvasManager
+	get canvasManager() {
+		return this._canvasManager;
+	}
 
 	// 메인 루프
-	loop: LoopManager
+	private _loop: LoopManager
+	get loop() {
+		return this._loop;
+	}
 
-	data:Array<any> = [];
-
-	fn: (time: number, epoch: number) => void;
+	private fn: (time: number, epoch: number) => void;
 
 	constructor(protected delay: number) {
 		// 시각화 캔버스 설정
-		this.canvasManager = new CanvasManager('canvas');
+		this._canvasManager = new CanvasManager('canvas');
 		// 메인 루프 설정
-		this.loop = new LoopManager();
+		this._loop = new LoopManager();
 		this.loop.time = delay;
 
 		this.fn = (time: number, epoch: number) => {
@@ -25,7 +29,6 @@ export class Chapter {
 		}
 	}
 	run() {
-		this.printData();
 		this.preprocessing();
 		this.loop.subscribe(this.fn);
 		this.loop.run();
@@ -36,9 +39,6 @@ export class Chapter {
 	}
 	preprocessing() {
 		console.log("Not implements method: preprocessing")
-	}
-	printData() {
-		console.log("Not implements method: printData")
 	}
 	model(epoch: number) {
 		console.log("Not implements method: model")
