@@ -21,16 +21,13 @@ export class LinearRegression extends Chapter {
 	private b = Math.random() * 0.1;
 	private w = Math.random() * 0.1;
 
-	printData(): void {
-		
-	}
 	model() {
 		let gradient_b = 0;
 		let gradient_w = 0;
-		for (let i = 0; i < this.data.length; i++) {
+		for (const element of this.data) {
 
-			const x = this.data[i].x;
-			const y = this.data[i].y;
+			const x = element.x;
+			const y = element.y;
 			const predictedY = this.w * x + this.b;
 			gradient_b += 2 * (predictedY - y); // 절편에 대한 편미분
 			gradient_w += 2 * (predictedY - y) * x; // 기울기에 대한 편미분

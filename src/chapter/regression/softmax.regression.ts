@@ -38,7 +38,6 @@ export class SoftmaxRegression extends Chapter {
 		const X = this.X;
 		const Y = this.Y;
 
-		let n = X[0].length;
 		let m = X.length;
 
 		const numClasses = this.weights.length;
